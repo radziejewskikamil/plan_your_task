@@ -1,0 +1,20 @@
+{% extends "main.html" %}
+{% load static %}
+{% block content %}
+    <div class="container">
+        <form method="POST" class="post-form">{% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Save" class="btn btn-success">
+            {% if task_id %}
+                <a href="/delete/{{ task_id }}" class="btn btn-danger">Delete</a>
+            {% endif %}
+            <a href="/" class="btn btn-primary back_link">Back</a>
+        </form>
+    </div>
+
+    <script>
+        $(function() {
+            $('#id_date').datepicker({ dateFormat: 'yy-mm-dd', changeMonth: true, changeYear: true }).val();
+        });
+    </script>
+{% endblock %}
